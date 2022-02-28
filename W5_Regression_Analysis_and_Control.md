@@ -55,7 +55,7 @@ Visualizing the association between variables as we add additional predictors be
 However, R can provide three dimensional scatterplots to visualize two predictors and an outcome. 
 These scatterplots can be constructed using the scatterplot3d function from the scatterplot3d package.
 
-In presenting a model, a tilde symbol (~)  is used to indicate the outcome variable is regressed on 
+In presenting a model, a tilde symbol (~) is used to indicate the outcome variable is regressed on 
 our predictor variables, which are separated with (+) signs.
 
 Code:
@@ -110,7 +110,7 @@ Note:
 After the assumptions are checked, the regression analysis can be conducted. In R linear 
 regressions are performed using the lm (linear model) function. This function uses a 
 formula to indicate the model to evaluate. The outcome (y) variable goes on the left side 
-of a tilde (~) symbol, and the predictor variables go on the right side of the tilde symbol 
+of a tilde (~)symbol, and the predictor variables go on the right side of the tilde symbol 
 with a plus sign (+) between each x variable: y~x +X2
 
 Code:
