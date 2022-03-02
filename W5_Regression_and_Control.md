@@ -10,7 +10,7 @@ PacMan(pkgs)
 
 # Set working directory
 ```
-setwd("C:/Users/.../Desktop/LearningR/ Reg test")
+setwd("/Users/chichi/Desktop/school work/R/w5")
 ```
 
 # Import Age, Weight, BloodPressure data
@@ -329,8 +329,76 @@ data:  Bp_RegMod$residuals
 W = 0.97455, p-value = 0.6693
 ```
 
-Observation: 
+Observation:
 Based on a p value of .06693, we cannot reject the null and so we can conclude 
 that the variables are normally distributed.  
+
+# Multicollinearity 
+Note: Multiollinearity is when one or more of our predictor variables are 
+functions, in part, of other predicror variables. Whn multicollinearity 
+is present, the variables’ standard errors will be larger than they should 
+be, and thus we are less likely to find statistical significance even if 
+it is there. 
+
+Correlations: 
+The quick and dirty way of checking for multicollinearity is by looking at 
+correlations among our predictor variables.; again, this does not definitively 
+tell you whether multicollinearty is present or not. To check for 
+multicollinearity, it is best to always perform the VIF test. If the values 
+are 10 or greater, then the variable is collinear with one or more of the other 
+independent variables. 
+
+Code:
+```
+vif(Bp_RegMod)
+```
+
+Output:
+```
+    Age   Weight 
+1.464247 1.464247 
+```
+
+Observations: 
+None of the variables are near 10 and so we can conlcude that we do ot have multicollinearity. 
+
+# Calculating Leverage Cut-Point
+Note:
+To check for leverage we use the expression 2(k+1)/n, where k is the number 
+of predictors and n is the number of observations in our model. Any observation 
+that has a hat value equal to or greater than the calculated value is considrerd 
+to have high leverage.  
+
+Code:
+```
+(2*(2+1))/30
+```
+
+Output:
+```
+[1] 0.200
+```
+
+# Plotting Ouliers, Leverage, and Infuential Data Points
+Note:
+Finally, any point that has a Cook’s distance greater than 1 is considered to be influential.We can use the influenceIndexPlot() function from the car library 
+where we tell R it is for the Bp_RegMod and that we want the plots for outliers ("Studentized"(, leverage,("hat"), and influence("Cook"). We will also use x11 
+to get a closer look at the points. 
+
+Code:
+```
+x11()
+influenceIndexPlot(Bp_RegMod,vars=c("Studentized","hat","Cook"))
+```
+![Picture1](https://user-images.githubusercontent.com/57466154/156438000-8c8c5835-14ca-4175-a55e-9ded8d605a52.png)
+
+Observations: 
+The top plot shows a coupe of observations that are outliers (residuals that 
+are + or – 2 or more standard deviations away from 0.  
+The middle plot shows that there are a couple of points that have high leverage 
+above .20
+The bottom plot however shows that none of the observations are influential.
+( No observation has a Cook’s distance greater than 1)
+
 
 
