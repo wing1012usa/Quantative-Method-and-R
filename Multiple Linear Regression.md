@@ -1,6 +1,6 @@
 # Model Summary
-What's the purpose?
--> To se how phsics scores are predicted from variables including gender, intelligence, emotional intelligence, verbal SAT scores, and math SAT scores.
+What's the purpose?</br>
+To se how phsics scores are predicted from variables including gender, intelligence, emotional intelligence, verbal SAT scores, and math SAT scores.
 
 # Prepare data
 ## Install and attach packages
