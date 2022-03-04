@@ -8,6 +8,10 @@ sapply(pkg, library, character.only = TRUE)}
 pkgs <- c("foreign", "ppcor", "leaps", "caret")
 PacMan(pkgs)
 ```
+# Model Summary
+What's the purpose?
+-> To se how phsics scores are predicted from variables including gender, intelligence, emotional intelligence, verbal SAT scores, and math SAT scores.
+
 
 ## Set working directory
 ```
