@@ -1,4 +1,8 @@
+# Model Summary
+What's the purpose?
+-> To se how phsics scores are predicted from variables including gender, intelligence, emotional intelligence, verbal SAT scores, and math SAT scores.
 
+# Prepare data
 ## Install and attach packages
 ```
 PacMan <- function(pkg){new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])] 
@@ -8,10 +12,6 @@ sapply(pkg, library, character.only = TRUE)}
 pkgs <- c("foreign", "ppcor", "leaps", "caret")
 PacMan(pkgs)
 ```
-# Model Summary
-What's the purpose?
--> To se how phsics scores are predicted from variables including gender, intelligence, emotional intelligence, verbal SAT scores, and math SAT scores.
-
 
 ## Set working directory
 ```
@@ -32,7 +32,8 @@ Output:
 ```
 
 # Standard Regression
-Notes: The standard regression enters all of the variables of interest in one model. In this case we are interested in how physics scores (physics), are predicted from gender, intelligence, (iq), emotional intelligence (ei), verbal SAT scores, (vsat), and math SAT scores, (msat). The output from the model can be accessed 
+Notes: 
+The standard regression enters all of the variables of interest in one model. In this case we are interested in how physics scores (physics), are predicted from gender, intelligence, (iq), emotional intelligence (ei), verbal SAT scores, (vsat), and math SAT scores, (msat). The output from the model can be accessed 
 
 Code:
 ```
@@ -66,9 +67,11 @@ F-statistic: 155.83 on 5 and 189 DF,  p-value: < 2.22e-16
 ```
 
 [Intercept](https://i.imgur.com/ItBQeFR.jpg)
+[Statistical significance](https://www.simplypsychology.org/p-value.html)
 
-Notes: The overall model was statistically significant: **R2= .80**, **adjusted R2 =.80**, **F (5,189) = 155.83**, **p <.001**. 
-Three of the predictor variables contributed significantly to the overall model. 1. Math SAT scores, “msat”, verbal SAT sores, “vsat” and gender. The output here is **[unstandardized coefficients](https://www.facebook.com/258972167562965/photos/何謂標準化迴歸係數standardized-regression-cofficient此例子使用身高去預測體重做一個簡單的統計結果依變項dependentwei/342608869199294/)**.
+Notes: The overall model was statistically significant: **R-squared= .80**, **Adjusted R-squared =.80**, **F (5,189) = 155.83**, **p <.001**. 
+Three of the predictor variables contributed significantly to the overall model including “msat”, “vsat” and gender. 
+The output here is **[unstandardized coefficients](https://www.facebook.com/258972167562965/photos/何謂標準化迴歸係數standardized-regression-cofficient此例子使用身高去預測體重做一個簡單的統計結果依變項dependentwei/342608869199294/)**.
 
 Code:
 ```
