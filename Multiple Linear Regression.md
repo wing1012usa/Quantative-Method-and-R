@@ -32,7 +32,7 @@ Output:
 ```
 
 # Standard Regression
-Notes: 
+Notes:<br/>
 The standard regression enters all of the variables of interest in one model. In this case we are interested in how physics scores (physics), are predicted from gender, intelligence, (iq), emotional intelligence (ei), verbal SAT scores, (vsat), and math SAT scores, (msat). The output from the model can be accessed 
 
 Code:
@@ -66,10 +66,11 @@ Multiple R-squared:  0.80479,	Adjusted R-squared:  0.79962
 F-statistic: 155.83 on 5 and 189 DF,  p-value: < 2.22e-16
 ```
 
-[Intercept](https://i.imgur.com/ItBQeFR.jpg)
+[Intercept](https://i.imgur.com/ItBQeFR.jpg)<br/>
 [Statistical significance](https://www.simplypsychology.org/p-value.html)
 
-Notes: The overall model was statistically significant: **R-squared= .80**, **Adjusted R-squared =.80**, **F (5,189) = 155.83**, **p <.001**. 
+Notes:<br/> 
+The overall model was statistically significant: **R-squared= .80**, **Adjusted R-squared =.80**, **F (5,189) = 155.83**, **p <.001**. 
 Three of the predictor variables contributed significantly to the overall model including “msat”, “vsat” and gender. 
 The output here is **[unstandardized coefficients](https://www.facebook.com/258972167562965/photos/何謂標準化迴歸係數standardized-regression-cofficient此例子使用身高去預測體重做一個簡單的統計結果依變項dependentwei/342608869199294/)**.
 
@@ -142,9 +143,10 @@ Standardized Coefficients::
 ```
 
 # Semipartial correlations
-Notes: We can use the **spcor.test function** from the ppcor package. This function requires the data to be formatted differently with missing data (NA) removed (na.omit). The select argument allows us to focus on the variables included in the model so cases are not removed unless they have missing data on the variable of interest. Additionally, we need to reformat the gender variable so it is classified as numeric. 
+Notes: <br/>
+We can use the **spcor.test function** from the ppcor package. This function requires the data to be formatted differently **with missing data (NA) removed (na.omit).** The select argument allows us to focus on the variables included in the model so cases are not removed unless they have missing data on the variable of interest. Additionally, we need to reformat the gender variable so it is classified as numeric. 
 
-### Prepare data
+## Prepare data
 Code:
 ```
 Physics2 <- na.omit(subset.data.frame(Physics, 
@@ -155,7 +157,8 @@ Physics2$gender <- as.numeric(Physics2$gender)
 class("gender")
 class(Physics2$gender)
 ```
-Note: Check to ensure that gender has been transformed to a numeric variable.
+Note: <br/> 
+Check to ensure that gender has been transformed to a numeric variable.
 
 Output:
 ```
@@ -166,14 +169,15 @@ Output:
 [1] "numeric"
 ```
 
-### Semipartial correlations 
-Notes: After the data are properly formatted, the semipartial correlation can be generated for each variable (e.g. gender) with the outcome variable. (i.e. physics). The last part of the function call notes the other variables included in the model: Physics2.[,c(”iq”,”ei”,”msat”,”vsat”)]. The output from the spcor.test function can be used to calculate the squared (^2) semipartial correlation. 
+## Semipartial correlations 
+Notes: <br/>
+After the data are properly formatted, the semipartial correlation can be generated for each variable (e.g. gender) with the outcome variable. (i.e. physics). The last part of the function call notes the other variables included in the model: Physics2.[,c(”iq”,”ei”,”msat”,”vsat”)]. The output from the spcor.test function can be used to calculate the squared (^2) semipartial correlation. 
 
-Code:
+Code:gender
 ```
 sr_gender <- spcor.test(
   Physics2$physics, Physics2$gender, 
-  Physics2[,c("iq", "ei","msat", "vsat")])
+  Physics2[c("iq","ei","msat","vsat")])
 sr_gender$estimate^2
 ```
 Output:
@@ -181,7 +185,7 @@ Output:
 [1] 0.03219449
 ```
 
-Code:
+Code:VSAT
 ```
 sr_VSAT <- spcor.test(
   Physics2$physics, Physics2$vsat, 
@@ -193,7 +197,7 @@ Output:
 [1] 0.09603616
 ```
 
-Code:
+Code:MSAT
 ```
 sr_MSAT <- spcor.test(
   Physics2$physics, Physics2$msat, 
@@ -205,10 +209,12 @@ Output:
 [1] 0.3789615
 ```
 
-Note: The squared semipartial correlations (sr2) indicate the proportion of variance uniquely associated with each of the three predictors: gender (sr2) = .03, vsat(sr2)=.10, and msat (sr2)= .38. These findings suggest **msat was the strongest predictor of physics scores**. 
+Note:  <br/>
+The squared semipartial correlations (sr2) indicate the proportion of variance uniquely associated with each of the three predictors: gender (sr2) = .03, vsat(sr2)=.10, and msat (sr2)= .38. These findings suggest **msat was the strongest predictor of physics scores**. 
 
 # Plot residuals and predicted values
-Notes: The plot for the standardized predicted values and standadridzed residuals can be obtained as follows: 
+Notes: <br/>
+The plot for the standardized predicted values and standadridzed residuals can be obtained as follows: 
 
 Code:
 ```
@@ -223,7 +229,8 @@ abline(h=0,col="red")
 ![825654b4-a5bf-4ac7-9fe2-dbdb2e9e44e0](https://user-images.githubusercontent.com/57466154/156628029-f6c21e7b-039a-422f-9104-ac9a82e21215.png)
 
 # User-determined regression
-Note:A user -determined regression provides another **approach to modeling the associations between the predictors and outcome**. User -determined regressions involves a series of regressions with predictors added **based on factors the researcher decided were relevant**. 
+Note: <br/>
+A user -determined regression provides another **approach to modeling the associations between the predictors and outcome**. User -determined regressions involves a series of regressions with predictors added **based on factors the researcher decided were relevant**. 
 
 In this case, we will run five regressions models with a predictor added at each step. The order of entry will be gender, intelligence (iq), emotional intelligence (ei), verbal SAT score (vsat), and math SAT score (msat). 
 
@@ -403,6 +410,7 @@ Model 2: physics ~ gender + iq
 2    192 42930  1    8938.3 39.975 1.762e-09 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
 > anova(Phys_RegMod2, Phys_RegMod3)
 Analysis of Variance Table
 
@@ -413,6 +421,7 @@ Model 2: physics ~ gender + iq + ei
 2    191 39464  1    3466.7 16.778 6.201e-05 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
 > anova(Phys_RegMod3, Phys_RegMod4)
 Analysis of Variance Table
 
@@ -423,6 +432,7 @@ Model 2: physics ~ gender + iq + ei + vsat
 2    190 34433  1    5030.6 27.759 3.706e-07 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
 > anova(Phys_RegMod4, Phys_RegMod5)
 Analysis of Variance Table
 
@@ -437,8 +447,10 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 ```
 
 # Data-driven regression
-Notes: Data-driven regression uses statistical information, (changes in model fit) to determine if predictor variables should be added to the model, (forward regression) or eliminated from the model, (backward regression).
+Notes:  <br/>
+Data-driven regression uses statistical information, (changes in model fit) to determine if predictor variables should be added to the model, (forward regression) or eliminated from the model, (backward regression).
 In forward selection regression, variables are added based on their ability  to improve model fit. **Variables that improve model fit the most are added at earlier steps.** 
+
 In contrast, **backward elimination regression removes variables from the model based on reduction in model fit estimates with variables being removed if their removal does not significantly decrease the model fit.**  
 
 We will focus on forward regression in this example. (method-“leapfForward”). The train function from the caret package provides one method to complete this type of analysis. To ensure that we only use the variables of interest, we can use the train function with the Physics 2 data frame. The final argument in this function call notes the maximum number of predictors we want to incorporate into the model: tuneGrid=data.frame(nvmax=1:5). The code indicates we want to consider the best models of size 1 to 5, although the function can potentially stop with fewer predictors if it determines fewer predictors are needed for the best fit model. Once we run the model, we can view the results. 
@@ -483,7 +495,8 @@ Selection Algorithm: forward
 ```
 
 # Regression model coefficients
-Note: The unstandardized coefficients for a particular model can be obtained with the coef function. 
+Note: <br/>
+The unstandardized coefficients for a particular model can be obtained with the coef function. 
 
 Code:
 ```
@@ -506,7 +519,8 @@ Output:
 
 # Evaluating Regression Models
 ### AIC
-Note: AIC stands for Akaike’s Information Criteria, a metric developed by the Japanese Statistician, Hirotugu Akaike, 1970. The basic idea of AIC is to penalize the inclusion of additional variables to a model. It adds a penalty that increases the error when including additional terms. 
+Note:  <br/>
+AIC stands for Akaike’s Information Criteria, a metric developed by the Japanese Statistician, Hirotugu Akaike, 1970. The basic idea of AIC is to penalize the inclusion of additional variables to a model. It adds a penalty that increases the error when including additional terms. 
 **The lower the AIC, the better the model.**
 
 Code: AIC for the Standard Regression Model
@@ -542,7 +556,8 @@ Output:
 ```
 
 ### BIC
-Note: BIC (or Bayesian information criteria) is a variant of AIC with a stronger penalty for including additional variables to the model.
+Note:  <br/>
+BIC (or Bayesian information criteria) is a variant of AIC with a stronger penalty for including additional variables to the model.
 
 Code: BIC for Standard Regression model
 ```
