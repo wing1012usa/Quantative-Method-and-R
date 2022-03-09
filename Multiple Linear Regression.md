@@ -612,12 +612,14 @@ Output:
   adj.r.squared sigma   AIC   BIC  p.value
           <dbl> <dbl> <dbl> <dbl>    <dbl>
 1         0.800  7.87 1366. 1389. 4.59e-65
+
 > glance(Phys_RegMod2) %>%
 +   dplyr::select(adj.r.squared, sigma, AIC, BIC, p.value)
 # A tibble: 1 × 5
   adj.r.squared sigma   AIC   BIC  p.value
           <dbl> <dbl> <dbl> <dbl>    <dbl>
 1         0.277  15.0 1613. 1626. 1.16e-14
+
 > glance(Phys_RegMod5) %>%
 +   dplyr::select(adj.r.squared, sigma, AIC, BIC, p.value)
 # A tibble: 1 × 5
